@@ -32,7 +32,7 @@ This will install:
 - `freeglut3-dev`: Development files for the OpenGL Utility Toolkit (GLUT)
 - `mesa-common-dev`: Development files for the Mesa 3D Graphics Library
 
-#### Compiling with CMake (after writing a skeleton code) 
+#### Compiling with CMake (** after writing a skeleton code **) 
 
 To compile the code, you'll need to use CMake. Follow these steps:
 
