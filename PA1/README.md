@@ -1,6 +1,3 @@
-Certainly! Here's the revised assignment description with the tasks reordered.
-
----
 
 # CS686: Motion Planning and Applications
 ## Problem Assignment 1
