@@ -8,7 +8,7 @@ Your task is to complete the provided code skeleton to implement motion planning
 
 ### Setup
 
-#### Installing OMPL
+#### 1-1. Installing OMPL
 
 To install OMPL, you can use the package manager. On Ubuntu, run the following command:
 
@@ -18,7 +18,7 @@ sudo apt-get install libompl-dev
 
 For more detailed installation instructions, you can refer to the [official OMPL installation guide](http://ompl.kavrakilab.org/installation.html).
 
-#### Installing OpenGL and Related Packages for Visualization
+#### 1-2. Installing OpenGL and Related Packages for Visualization
 
 To install the necessary packages for OpenGL, execute the following command:
 
@@ -32,7 +32,7 @@ This will install:
 - `freeglut3-dev`: Development files for the OpenGL Utility Toolkit (GLUT)
 - `mesa-common-dev`: Development files for the Mesa 3D Graphics Library
 
-#### Compiling with CMake (** after writing a skeleton code **) 
+#### 2. Compiling with CMake (** after writing a skeleton code **) 
 
 To compile the code, you'll need to use CMake. Follow these steps:
 
