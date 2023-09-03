@@ -59,7 +59,7 @@ make
 After running these commands, you should see an executable file generated in your project directory. 
 Run this executable to test your implementation and see the visualization of the result.
 
-### Assignment Tasks
+### Assignment Tasks: Fill in PLACE YOUR CODE HERE sections
 1. (pa1_problem.cpp) Complete the setup of the state space, bounds, and space information in the provided code skeleton (i.e., TODOs).
 2. (pa1_problem.cpp) Fill in the blanks in the `isStateValid` function to implement collision checking.
 3. (pa1_problem.cpp) Set and Run the following planning algorithms and visualize their paths and obstacles:
