@@ -69,4 +69,3 @@ Run this executable to test your implementation and see the visualization of the
 
 ---
 
-Feel free to add or modify sections as needed for your specific assignment requirements.
