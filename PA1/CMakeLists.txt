@@ -13,8 +13,8 @@ include_directories(
     ${GLUT_INCLUDE_DIRS}
 )
 
-add_executable(pa1_solution pa1_solution.cpp)
-target_link_libraries(pa1_solution 
+add_executable(pa1_problem pa1_problem.cpp)
+target_link_libraries(pa1_problem 
     ${OMPL_LIBRARIES} 
     ${EIGEN3_LIBRARIES}
     ${OPENGL_LIBRARIES}
