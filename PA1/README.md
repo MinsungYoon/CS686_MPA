@@ -71,6 +71,7 @@ Run this executable to test your implementation and see the visualization of the
 You have to submit two types of materials: report and code.
 - Report: Make a PDF file containing visualization results.
 - Code: a pa1_problem.cpp file
+
 Generate a zip file of your code and report, then save your zip file as cs686_yourname_studentID.zip.
 Please submit the .zip file via KLMS.
 
