@@ -44,6 +44,7 @@ sudo apt install cmake
 3. Make build directory and move to it.
 4. Run `cmake ..` to generate the Makefile.
 5. Run `make` to compile the code.
+6. Execute a compiled file (pa1_problem)
 
 Here are the commands:
 ```bash
@@ -52,6 +53,7 @@ mkdir build
 cd build
 cmake ..
 make
+./pa1_problem
 ```
 
 After running these commands, you should see an executable file generated in your project directory. 
