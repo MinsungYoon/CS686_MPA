@@ -38,14 +38,14 @@ To compile the code, you'll need to use CMake. Follow these steps:
 
 1. install cmake
 ```bash
-using sudo apt install cmake
+sudo apt install cmake
 ```
 2. Navigate to the directory containing your `CMakeLists.txt` file.
-3. Run `cmake .` to generate the Makefile.
-4. Run `make` to compile the code.
+3. Make build directory and move to it.
+4. Run `cmake ..` to generate the Makefile.
+5. Run `make` to compile the code.
 
 Here are the commands:
-
 ```bash
 cd /path/to/your/project (e.g., PA1)
 mkdir build
