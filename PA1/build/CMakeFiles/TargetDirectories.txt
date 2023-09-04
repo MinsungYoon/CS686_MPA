@@ -1,3 +1,0 @@
-/home/minsung/Code/MPA/CS686_MPA/PA1/build/CMakeFiles/rebuild_cache.dir
-/home/minsung/Code/MPA/CS686_MPA/PA1/build/CMakeFiles/edit_cache.dir
-/home/minsung/Code/MPA/CS686_MPA/PA1/build/CMakeFiles/pa1_problem.dir
