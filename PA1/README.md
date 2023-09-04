@@ -82,7 +82,10 @@ Note: After making modifications to the code, you need to recompile the project 
 ### Submission Guide
 You have to submit a report.
 - Report: Make a PDF file containing visualization results.
+
 Please submit the .pdf file via KLMS.
+
+If you have any trouble, feel free to contact the TA (minsung.yoon@kaist.ac.kr).
 
 
 ---
