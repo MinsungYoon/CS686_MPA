@@ -109,7 +109,7 @@ int main(int argc, char **argv) {
 
     // 4. Create an RRT/RRTstar/PRM/PRMstar planner and set up the problem
     // by changing og::RRT part to og::RRTstar, og::PRM, or og::PRMstar.
-    auto planner = std::make_shared<og::PRM>(si);
+    auto planner = std::make_shared<og::RRT>(si);
     planner->setProblemDefinition(pdef);
     planner->setup();
 
