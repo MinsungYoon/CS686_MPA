@@ -3,7 +3,7 @@
 
 ### Objective
 
-Your task is to complete the provided code skeleton to implement motion planning algorithms using the Open Motion Planning Library (OMPL). Specifically, you will fill in the blanks to set up the problem and implement collision checks. You will then run the PRM, PRM*, RRT, and RRT* algorithms and visualize the results using OpenGL.
+Your task is to run motion planning algorithms using the Open Motion Planning Library (OMPL). You will run the PRM, PRM*, RRT, and RRT* algorithms and visualize the results using OpenGL.
 
 ### Setup
 
