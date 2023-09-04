@@ -8,7 +8,7 @@ Your task is to complete the provided code skeleton to implement motion planning
 
 ### Setup
 
-#### Installing OMPL
+#### 1-1. Installing OMPL
 
 To install OMPL, you can use the package manager. On Ubuntu, run the following command:
 
@@ -18,7 +18,7 @@ sudo apt-get install libompl-dev
 
 For more detailed installation instructions, you can refer to the [official OMPL installation guide](http://ompl.kavrakilab.org/installation.html).
 
-#### Installing OpenGL and Related Packages for Visualization
+#### 1-2. Installing OpenGL and Related Packages for Visualization
 
 To install the necessary packages for OpenGL, execute the following command:
 
@@ -32,7 +32,7 @@ This will install:
 - `freeglut3-dev`: Development files for the OpenGL Utility Toolkit (GLUT)
 - `mesa-common-dev`: Development files for the Mesa 3D Graphics Library
 
-#### Compiling with CMake (after writing a skeleton code) 
+#### 2. Compiling with CMake (** after writing a skeleton code **) 
 
 To compile the code, you'll need to use CMake. Follow these steps:
 
@@ -44,6 +44,7 @@ sudo apt install cmake
 3. Make build directory and move to it.
 4. Run `cmake ..` to generate the Makefile.
 5. Run `make` to compile the code.
+6. Execute a compiled file (pa1_problem)
 
 Here are the commands:
 ```bash
@@ -52,13 +53,14 @@ mkdir build
 cd build
 cmake ..
 make
+./pa1_problem
 ```
 
 After running these commands, you should see an executable file generated in your project directory. 
 Run this executable to test your implementation and see the visualization of the result.
 
-### Assignment Tasks
-1. (pa1_problem.cpp) Complete the setup of the state space, bounds, and space information in the provided code skeleton (i.e., TODOs).
+### Assignment Tasks: Fill in 'PLACE YOUR CODE HERE' sections
+1. (pa1_problem.cpp) Complete the setup of the state space, bounds, and space information in the provided code skeleton.
 2. (pa1_problem.cpp) Fill in the blanks in the `isStateValid` function to implement collision checking.
 3. (pa1_problem.cpp) Set and Run the following planning algorithms and visualize their paths and obstacles:
     - PRM (Probabilistic Roadmap)
@@ -71,7 +73,10 @@ Run this executable to test your implementation and see the visualization of the
 You have to submit two types of materials: report and code.
 - Report: Make a PDF file containing visualization results.
 - Code: a pa1_problem.cpp file
+
 Generate a zip file of your code and report, then save your zip file as cs686_yourname_studentID.zip.
+
 Please submit the .zip file via KLMS.
+
 ---
 
