@@ -1,4 +1,3 @@
-
 # CS686: Motion Planning and Applications
 ## Problem Assignment 1
 
@@ -32,7 +31,7 @@ This will install:
 - `freeglut3-dev`: Development files for the OpenGL Utility Toolkit (GLUT)
 - `mesa-common-dev`: Development files for the Mesa 3D Graphics Library
 
-#### 2. Compiling with CMake (** after writing a skeleton code **) 
+#### 2. Compiling with CMake
 
 To compile the code, you'll need to use CMake. Follow these steps:
 
@@ -48,35 +47,43 @@ sudo apt install cmake
 
 Here are the commands:
 ```bash
+# Navigate to the directory of your project (e.g., PA1)
 cd /path/to/your/project (e.g., PA1)
+
+# Create a directory named 'build' for building your project
 mkdir build
+
+# Move into the 'build' directory
 cd build
+
+# Run CMake to generate build files (especially 'Makefile') in the 'build' directory
 cmake ..
+
+# Compile your project using the generated build files
 make
+
+# Run the executable of your project
 ./pa1_problem
 ```
 
 After running these commands, you should see an executable file generated in your project directory. 
 Run this executable to test your implementation and see the visualization of the result.
 
-### Assignment Tasks: Fill in 'PLACE YOUR CODE HERE' sections
-1. (pa1_problem.cpp) Complete the setup of the state space, bounds, and space information in the provided code skeleton.
-2. (pa1_problem.cpp) Fill in the blanks in the `isStateValid` function to implement collision checking.
-3. (pa1_problem.cpp) Set and Run the following planning algorithms and visualize their paths and obstacles:
+### Assignment Tasks
+1. Try to build cpp project using CMake and run the executable.
+3. Try to run different algorithms by changing the planner in the code (i.e., pa1_problem.cpp):
     - PRM (Probabilistic Roadmap)
     - PRMstar (Optimized version of PRM)
     - RRT (Rapidly-exploring Random Trees)
     - RRTstar (Optimized version of RRT)
+Note: After making modifications to the code, you need to recompile the project each time to ensure that the changes are reflected in the executable file.
 4. For each planner, take a screenshot of the visualization results and attach it to the report.
 
 ### Submission Guide
-You have to submit two types of materials: report and code.
+You have to submit a report.
 - Report: Make a PDF file containing visualization results.
-- Code: a pa1_problem.cpp file
+Please submit the .pdf file via KLMS.
 
-Generate a zip file of your code and report, then save your zip file as cs686_yourname_studentID.zip.
-
-Please submit the .zip file via KLMS.
 
 ---
 
