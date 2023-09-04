@@ -71,7 +71,7 @@ Run this executable to test your implementation and see the visualization of the
 
 ### Assignment Tasks
 1. Try to build a cpp project using CMake and run the executable.
-3. Try to run different algorithms by changing the planner in the code (i.e., pa1_problem.cpp):
+2. Try to run different algorithms by changing the planner in the code (i.e., pa1_problem.cpp):
     - PRM (Probabilistic Roadmap)
     - PRMstar (Optimized version of PRM)
     - RRT (Rapidly-exploring Random Trees)
@@ -80,7 +80,7 @@ Run this executable to test your implementation and see the visualization of the
 Note: After making modifications to the code, you need to recompile the project each time to ensure that the changes are reflected in the executable file.
 
 
-4. For each planner, take a screenshot of the visualization results and attach it to the report.
+3. For each planner, take a screenshot of the visualization results and attach it to the report.
 
 ### Submission Guide
 You have to submit a report.
