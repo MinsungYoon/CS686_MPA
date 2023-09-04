@@ -22,10 +22,10 @@ struct Rectangle {
 
 std::vector<Point> path;  // To store the best path
 std::vector<std::pair<Point, Point>> treeEdges;  // To store the tree edges
-Rectangle obstacle = {2.0, 2.0, 2.0, 2.0};
-Rectangle obstacle2 = {6.0, 4.0, 2.0, 4.0};
 
-bool isStateValid(const ob::State *state) {
+Rectangle obstacle = {2.0, 2.0, 2.0, 2.0}; // {x, y, width, height}
+Rectangle obstacle2 = {6.0, 4.0, 2.0, 4.0};
+bool isStateValid(const ob::State *state) { // a collision checking function
     const auto *se2state = state->as<ob::SE2StateSpace::StateType>();
     double x = se2state->getX();
     double y = se2state->getY();
@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
     space->setBounds(bounds);
 
     auto si = std::make_shared<ob::SpaceInformation>(space);
-    si->setStateValidityChecker(isStateValid);
+    si->setStateValidityChecker(isStateValid); // set a collision checking function
     si->setup();
 
     // 2. Define start and goal states
@@ -107,13 +107,13 @@ int main(int argc, char **argv) {
     auto pdef = std::make_shared<ob::ProblemDefinition>(si);
     pdef->setStartAndGoalStates(start, goal);
 
-    // 4. Create an RRT/RRTstar/PRM/PRMstar planner and set up the problem
+    // *Note* 4. Create an RRT/RRTstar/PRM/PRMstar planner and set up the problem
     // by changing og::RRT part to og::RRTstar, og::PRM, or og::PRMstar.
     auto planner = std::make_shared<og::RRT>(si);
     planner->setProblemDefinition(pdef);
     planner->setup();
 
-    // 5. Set a planner termination condition (i.e., time limit)
+    // 5. Set a planner termination condition (i.e., time limit 0.1 sec)
     ompl::base::PlannerTerminationCondition ptc = ompl::base::timedPlannerTerminationCondition(0.1);
 
     // 6. Solve the problem using the planner
