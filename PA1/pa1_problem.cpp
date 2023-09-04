@@ -2,7 +2,10 @@
 #include <GL/glut.h>
 #include <ompl/base/SpaceInformation.h>
 #include <ompl/base/spaces/SE2StateSpace.h>
+#include <ompl/geometric/planners/rrt/RRT.h>
 #include <ompl/geometric/planners/rrt/RRTstar.h>
+#include <ompl/geometric/planners/prm/PRM.h>
+#include <ompl/geometric/planners/prm/PRMstar.h>
 #include <ompl/base/PlannerData.h>
 #include <vector>
 
@@ -19,28 +22,47 @@ struct Rectangle {
 
 std::vector<Point> path;  // To store the best path
 std::vector<std::pair<Point, Point>> treeEdges;  // To store the tree edges
+Rectangle obstacle = {2.0, 2.0, 2.0, 2.0};
+Rectangle obstacle2 = {6.0, 4.0, 2.0, 4.0};
 
-Rectangle obstacle = {3.0, 3.0, 2.0, 2.0}; // obs spec: {x, y, width, height}
 bool isStateValid(const ob::State *state) {
-    """
-     TODO: Implement this function to check if the state is valid
-     Hint 1: Use the 'obstacle' global variable to check for collision
-     Hint 2: You can get the x and y coordinates from the state using state->as<ob::SE2StateSpace::StateType>()->getX() and getY()
-     Hint 3: Check if the x and y coordinates are within the obstacle boundaries
-    """
-    // PLACE YOUR CODE HERE
+    const auto *se2state = state->as<ob::SE2StateSpace::StateType>();
+    double x = se2state->getX();
+    double y = se2state->getY();
+
+    // Check collision with the obstacle
+    if (x >= obstacle.x && x <= obstacle.x + obstacle.width &&
+        y >= obstacle.y && y <= obstacle.y + obstacle.height) {
+        return false; // Invalid state due to collision with the obstacle
+    }
+    // Check collision with the obstacle2
+    if (x >= obstacle2.x && x <= obstacle2.x + obstacle2.width &&
+        y >= obstacle2.y && y <= obstacle2.y + obstacle2.height) {
+        return false; // Invalid state due to collision with the obstacle
+    }
+
+    return true; // State is valid
 }
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Draw obstacle
-    glColor3f(1.0, 0.0, 0.0);
+    glColor3f(0.1, 0.1, 0.1);
     glBegin(GL_QUADS);
     glVertex2f(obstacle.x, obstacle.y);
     glVertex2f(obstacle.x + obstacle.width, obstacle.y);
     glVertex2f(obstacle.x + obstacle.width, obstacle.y + obstacle.height);
     glVertex2f(obstacle.x, obstacle.y + obstacle.height);
+    glEnd();
+
+    // Draw obstacle2
+    glColor3f(0.1, 0.1, 0.1);
+    glBegin(GL_QUADS);
+    glVertex2f(obstacle2.x, obstacle2.y);
+    glVertex2f(obstacle2.x + obstacle2.width, obstacle2.y);
+    glVertex2f(obstacle2.x + obstacle2.width, obstacle2.y + obstacle2.height);
+    glVertex2f(obstacle2.x, obstacle2.y + obstacle2.height);
     glEnd();
 
     // Draw tree in sky blue
@@ -64,48 +86,42 @@ void display() {
 }
 
 int main(int argc, char **argv) {
-    // Setup OMPL
-    """
-     TODO: Setup the state space, bounds, and space information
-     Hint 1: Create an instance of ob::SE2StateSpace for the state space
-     Hint 2: Create an instance of ob::RealVectorBounds and set the bounds for x and y to be [0, 10]
-     Hint 3: Use the setBounds method of the state space to set the bounds
-    """
-    // PLACE YOUR CODE HERE
+    // 1. Setup OMPL StateSpace and SpaceInformation
+    auto space = std::make_shared<ob::SE2StateSpace>();
+    ob::RealVectorBounds bounds(2);
+    bounds.setLow(0);
+    bounds.setHigh(10);
+    space->setBounds(bounds);
 
-    """
-     TODO: Create a SpaceInformation object and set its state validity checker
-     Hint 1: Create an instance of ob::SpaceInformation and pass the state space to it
-     Hint 2: Use setStateValidityChecker method to set 'isStateValid' as the state validity checker
-    """
-    // PLACE YOUR CODE HERE
+    auto si = std::make_shared<ob::SpaceInformation>(space);
+    si->setStateValidityChecker(isStateValid);
+    si->setup();
 
-    """
-     TODO: Setup start and goal states
-     Hint 1: Create instances of ob::ScopedState for the start and goal states
-     Hint 2: Use the setXY method of ob::SE2StateSpace::StateType to set the start state to (0, 0) and the goal state to (10, 10)
-    """
-    // PLACE YOUR CODE HERE
+    // 2. Define start and goal states
+    ob::ScopedState<> start(space);
+    start->as<ob::SE2StateSpace::StateType>()->setXY(1.0, 1.0);
+    ob::ScopedState<> goal(space);
+    goal->as<ob::SE2StateSpace::StateType>()->setXY(9.0, 9.0);
 
-    """
-     TODO: Setup the problem definition
-     Hint 1: Create an instance of ob::ProblemDefinition
-     Hint 2: Use the setStartAndGoalStates method to set the start and goal states
-    """
-    // PLACE YOUR CODE HERE
+    // 3. Define the problem definition
+    auto pdef = std::make_shared<ob::ProblemDefinition>(si);
+    pdef->setStartAndGoalStates(start, goal);
 
-    """
-     TODO: Setup the planner and associate it with the problem definition
-     Hint 1: Create an instance of og::RRT/RRTstar/PRM/PRMstar as the planner
-     Hint 2: Use the setProblemDefinition method to associate the planner with the problem definition
-    """
-    // PLACE YOUR CODE HERE
-    
-    ompl::base::PlannerTerminationCondition ptc = ompl::base::timedPlannerTerminationCondition(1.0);
+    // 4. Create an RRT/RRTstar/PRM/PRMstar planner and set up the problem
+    // by changing og::RRT part to og::RRTstar, og::PRM, or og::PRMstar.
+    auto planner = std::make_shared<og::PRM>(si);
+    planner->setProblemDefinition(pdef);
+    planner->setup();
+
+    // 5. Set a planner termination condition (i.e., time limit)
+    ompl::base::PlannerTerminationCondition ptc = ompl::base::timedPlannerTerminationCondition(0.1);
+
+    // 6. Solve the problem using the planner
     ob::PlannerStatus solved = planner->solve(ptc);
 
     // After solving the problem, update the treeEdges and path
     if (solved) {
+        // Extract planner data and tree edges
         ob::PlannerData plannerData(si);
         planner->getPlannerData(plannerData);
         treeEdges.clear();
@@ -121,6 +137,7 @@ int main(int argc, char **argv) {
             }
         }
 
+        // Extract and store the solution path
         auto solutionPath = pdef->getSolutionPath()->as<og::PathGeometric>();
         for (std::size_t i = 0; i < solutionPath->getStateCount(); ++i) {
             const auto* state = solutionPath->getState(i)->as<ob::SE2StateSpace::StateType>();
@@ -129,7 +146,7 @@ int main(int argc, char **argv) {
         std::cout << "Path length: " << solutionPath->length() << std::endl;
     }
 
-    // Setup OpenGL
+    // Setup OpenGL and visualize the result
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(500, 500);
