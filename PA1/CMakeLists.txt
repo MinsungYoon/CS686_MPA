@@ -23,5 +23,5 @@ target_link_libraries(pa1_problem
     ${OMPL_LIBRARIES}                 # Link the OMPL library
     ${EIGEN3_LIBRARIES}               # Link the Eigen3 library
     ${OPENGL_LIBRARIES}               # Link the OpenGL library
-    ${GLUT_LIBRARY}                   # Link the GLUT library
+    ${GLUT_LIBRARIES}                 # Link the GLUT library
 )
